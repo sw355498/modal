@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cat</title>
+    <style>
+      @keyframes turnAnimation {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      .model {
+        display: none;
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        top: 0;
+        left: 0;
+      }
+      .model.open {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .model .bg {
+        background: rgba(0, 0, 0, 0.7);
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: -1;
+      }
+      .model .imgBox {
+        width: 200px;
+        height: 200px;
+        animation: turnAnimation 3.5s linear infinite;
+      }
+      .model .imgBox img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+      .btnBox {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin: 200px auto 0;
+        column-gap: 20px;
+      }
+      .btnBox .openStyle {
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        /* box-shadow: 0 0 5px black; */
+        background: paleturquoise;
+        padding: 10px 20px;
+        cursor: pointer;
+      }
+      .btnBox .openStyle:hover {
+        box-shadow: 1px 1px 5px black;
+        background: rgb(148, 231, 231);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="model">
+      <div class="bg" id="closeModel"></div>
+      <div class="imgBox">
+        <img
+          src="https://cdn.pixabay.com/photo/2019/09/14/09/44/cat-4475583_1280.png"
+          alt=""
+        />
+      </div>
+    </div>
+    <div class="btnBox">
+      <button class="openStyle" id="openModel">貓貓</button>
+    </div>
+    <script>
+      let model = document.querySelector(".model");
+      let openModel = document.querySelector("#openModel");
+      let closeModel = document.querySelector("#closeModel");
+      openModel.addEventListener("click", () => {
+        model.classList.add("open");
+      });
+      closeModel.addEventListener("click", () => {
+        if (model.classList.contains("open")) {
+          model.classList.remove("open");
+        }
+      });
+    </script>
+  </body>
+</html>
